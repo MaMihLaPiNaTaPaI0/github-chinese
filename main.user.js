@@ -28,8 +28,7 @@
 (function (window, document, undefined) {
     'use strict';
 
-    /* =========================== 全局配置常量 =========================== 
-    https://raw.githubusercontent.com/MaMihLaPiNaTaPaI0/github-chinese/MoGaiCeShi/main.user.js*/
+    /* =========================== 全局配置常量 =========================== */
     const CONFIG = {
         LANG: 'zh-CN', // 默认语言
         DEV: false, // 默认不开启开发者模式
