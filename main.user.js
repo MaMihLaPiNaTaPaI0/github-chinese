@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GitHub 中文化插件
+// @name         GitHub 中文化插件解决无法搜索临时方案
 // @namespace    https://github.com/maboloshi/github-chinese
 // @description  中文化 GitHub 界面的部分菜单及内容。原作者为楼教主(http://www.52cik.com/)。
 // @copyright    2021, 沙漠之子 (https://maboloshi.github.io/Blog)
@@ -12,7 +12,7 @@
 // @match        https://gist.github.com/*
 // @match        https://education.github.com/*
 // @match        https://www.githubstatus.com/*
-// @require      https://raw.githubusercontent.com/maboloshi/github-chinese/gh-pages/locals.js?v1.9.4-2026-05-21
+// @require      https://raw.githubusercontent.com/MaMihLaPiNaTaPaI0/github-chinese/MoGaiCeShi/main.user.js
 // @run-at       document-start
 // @grant        GM_addStyle
 // @grant        GM_xmlhttpRequest
@@ -163,6 +163,36 @@
     /* =========================== 初始化入口 =========================== */
     function init() {
         checkI18NLoaded();
+
+        // ========== 修复搜索框消失 (Issue #702) ==========
+        function applySearchBoxHotfix() {
+            const searchSelectors = [
+                'qbsearch-input',
+                '[data-target^="qbsearch-input"]',
+                '#qb-input-query',
+                'header.GlobalNav',
+                '[class*="appHeader"]',
+                '[class*="Search-module"]',
+                '#__primerPortalRoot__',
+            ];
+            const conf = I18N && I18N.conf;
+            if (conf) {
+                conf.ignoreMutationSelectorPage['*'] = [
+                    ...(conf.ignoreMutationSelectorPage['*'] || []),
+                    ...searchSelectors
+                ];
+                conf.ignoreSelectorPage['*'] = [
+                    ...(conf.ignoreSelectorPage['*'] || []),
+                    ...searchSelectors
+                ];
+                console.log('github-chinese: #702 搜索框修复已应用');
+            } else {
+                console.warn('github-chinese: I18N.conf 未找到，修复未应用');
+            }
+        }
+        applySearchBoxHotfix();
+        // ===============================================
+
         initLangEnv();
         injectStyles();
         setupMenuCommands();
@@ -171,6 +201,7 @@
         setupTurboEvents();
         State.initDone = true;
     }
+
 
     /**
      * 初始化并保护中文语言环境
