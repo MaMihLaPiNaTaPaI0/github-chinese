@@ -12,7 +12,7 @@
 // @match        https://gist.github.com/*
 // @match        https://education.github.com/*
 // @match        https://www.githubstatus.com/*
-// @require      https://raw.githubusercontent.com/MaMihLaPiNaTaPaI0/github-chinese/MoGaiCeShi/main.user.js
+// @require      https://raw.githubusercontent.com/maboloshi/github-chinese/gh-pages/locals.js?v1.9.4-2026-05-21
 // @run-at       document-start
 // @grant        GM_addStyle
 // @grant        GM_xmlhttpRequest
@@ -28,7 +28,8 @@
 (function (window, document, undefined) {
     'use strict';
 
-    /* =========================== 全局配置常量 =========================== */
+    /* =========================== 全局配置常量 =========================== 
+    https://raw.githubusercontent.com/MaMihLaPiNaTaPaI0/github-chinese/MoGaiCeShi/main.user.js*/
     const CONFIG = {
         LANG: 'zh-CN', // 默认语言
         DEV: false, // 默认不开启开发者模式
